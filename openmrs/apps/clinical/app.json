@@ -22,8 +22,8 @@
 	],
 	"config": {
 		"hideConditions": false,
-		"enableNepaliCalendar": true,
-		"displayNepaliDates": true,
+		"enableNepaliCalendar": false,
+		"displayNepaliDates": false,
 		"filterObservationTemplates": true,
 		"defaultVisitType": "General",
 		"visitTypeForRetrospectiveEntries": "General",
@@ -1845,12 +1845,22 @@
 			},
 			"PNC, Visit Number": {
 				"multiSelect": true
-            },
+            		},
 			"HIVTC, ART Treatment Adherence": {
-                "multiSelect": true,
-                "required": true
+  		              	"multiSelect": true,
+                	      	"required": true
 			},
-			"Depression-Suicide risk category":{
+			"Covid-Symptoms":{
+			      	"required": true
+			}, 
+			"Coivd-Sample collected": {
+				"required": true
+			},
+			"Covid-Additional risk factor": {
+				"multiSelect": true,
+				"required": true
+			},
+			"Depression-Suicide risk category": {
 				"required": true
 			},
 			"Depression-Patient not hospitalized":{
