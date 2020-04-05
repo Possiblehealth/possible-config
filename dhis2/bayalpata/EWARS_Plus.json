@@ -17,26 +17,40 @@
           "row": 1,
           "column": 2
         },
+  	{ 
+		"_comment": "No. of cases with Influenza Like Illness (ILI)",
+          "categoryOptionCombo": "KVOnXAsvNre",  
+          "dataElement": "xwVkIZsJdAK",
+          "row": 1,
+          "column": 3
+        },
 		{
 		"_comment": "No. of new cases hospitalized due to Severe Acute Respiratory Infection (SARI)",
           "categoryOptionCombo": "KVOnXAsvNre", 
           "dataElement": "nMrwAVMjwfY",
           "row": 1,
-          "column": 3
+          "column": 4
         },
         {
 		"_comment": "No. of deaths due to SARI",
           "categoryOptionCombo": "KVOnXAsvNre",
           "dataElement": "XUQFFcdaXYT", 
           "row": 1,
-          "column": 4
+          "column": 5
+        },
+	{
+		"_comment": "No. of cases with ILI/SARI for whom sample collected/referred for influenza test",
+          "categoryOptionCombo": "KVOnXAsvNre",
+          "dataElement": "iaNb42bJYJF", 
+          "row": 1,
+          "column": 6
         },
         {
 		"_comment": "No. of new suspected COVID-19 cases",
           "categoryOptionCombo": "KVOnXAsvNre",  
           "dataElement": "qJP151IraSG",
           "row": 1,
-          "column": 5
+          "column": 7
         }
 		,
 		{
@@ -44,28 +58,28 @@
           "categoryOptionCombo": "KVOnXAsvNre",  
           "dataElement": "yzb95luPgYg",
           "row": 1,
-          "column": 6
+          "column": 8
         },
         {
 		"_comment": "referred to other hospital",
           "categoryOptionCombo": "KVOnXAsvNre", 
           "dataElement": "sJ8BvPEgbKd", 
           "row": 1,
-          "column": 7
+          "column": 9
         },
         {
 		"_comment": "Coivd-Sample collected",
           "categoryOptionCombo": "KVOnXAsvNre",   
           "dataElement": "WWBpUi4ol14",
           "row": 1,
-          "column": 8
+          "column": 10
         },
 	{
 		"_comment": "No. of un-occupied Isolation beds",
           "categoryOptionCombo": "KVOnXAsvNre", 
           "dataElement": "otdZ5nEftS1",
           "row": 1,
-          "column": 9
+          "column": 11
         }
 	
           
