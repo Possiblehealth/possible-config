@@ -39,25 +39,20 @@ FROM
     INNER JOIN patient p ON p1.person_id = p.patient_id
 	INNER JOIN visit v ON  p.patient_id = v.patient_id
     WHERE
-        DATE(v.date_created) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_opd_er
+        DATE(p.date_created) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_opd_er
 -- --------------------------- Number of Fever or acute respiratory symptoms--------------------------
 UNION ALL
 SELECT
 0,SUM(total_fever_acute_respiratory_symptoms) as c2,0,0,0,0,0,0,0,0,0
 FROM    
 (SELECT 
-		count(distinct(o1.person_id)) as total_fever_acute_respiratory_symptoms
+	count(distinct(p1.person_id)) as total_fever_acute_respiratory_symptoms
     FROM
         obs o1
-    INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
-        AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Fever, unspecified','Lower Respiratory Tract Infection',
-        'Upper Respiratory Tract Infection','Pneumonia','Severe Pneumonia',
-        'Bronchitis (Acute & Chronic)','SARI-Severe Acute Respiratory Infection')
-    INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
     INNER JOIN person p1 ON o1.person_id = p1.person_id
     WHERE
-        DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_fever_acute_respiratory_symptoms
+         o1.concept_id = '15' AND o1.value_coded in ('6304','5516','5517','5518','5519','5520','7562')
+	AND DATE(o1.obs_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_fever_acute_respiratory_symptoms
 -- -------------------------- No. of cases with Influenza Like Illness'-- -------------------------- 
 UNION ALL
 SELECT
