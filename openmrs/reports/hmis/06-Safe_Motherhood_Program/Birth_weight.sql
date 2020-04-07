@@ -26,13 +26,13 @@ INNER JOIN encounter t3 ON t1.encounter_id = t3.encounter_id
 INNER JOIN visit t4 ON t3.visit_id = t4.visit_id
 INNER JOIN concept_name t5 ON t1.concept_id = t5.concept_id AND t5.voided = 0
 AND t5.concept_name_type = 'FULLY_SPECIFIED'
-WHERE t5.name IN ('Delivery Note-Neonate weight')
+WHERE t5.name IN ('NBA-Neonate weight')
 AND t1.voided = 0 AND (DATE(t1.obs_datetime) BETWEEN '#startDate#' AND '#endDate#')) AS InfantBirthWeights
 INNER JOIN
 (SELECT distinct t1.encounter_id, CASE
 WHEN t2.name = 'Asphyxiated' THEN 'Asphyxia'
 WHEN t2.name ='Normal' THEN 'Normal'
-WHEN t2.name ='New born status, Hypothermia' THEN 'New born status, Hypothermia'
+WHEN t2.name ='NBA-Hypothermia' THEN 'NBA-Hypothermia'
 WHEN t2.name ='Jaundice' THEN 'Jaundice'
 WHEN t2.name ='Disabled' THEN 'Defect'
 ELSE 0
@@ -44,7 +44,7 @@ INNER JOIN encounter t3 ON t1.encounter_id = t3.encounter_id
 INNER JOIN visit t4 ON t3.visit_id = t4.visit_id
 INNER JOIN concept_name t5 ON t1.concept_id = t5.concept_id AND t5.voided = 0
 AND t5.concept_name_type = 'FULLY_SPECIFIED'
-WHERE t5.name IN ('Delivery Note, New Born Status')
+WHERE t5.name IN ('NBA-New Born Status')
 AND t1.voided = 0 AND
 (DATE(t1.obs_datetime) BETWEEN '#startDate#' AND '#endDate#')) AS InfantBirthStatus
 ON InfantBirthWeights.encounter_id = InfantBirthStatus.encounter_id) AS T1
