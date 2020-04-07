@@ -53,6 +53,7 @@
             "Sextually transmitted infections Intake Template",
             "Sexually transmitted infections(STI) note",
             "Stroke OPD",
+	    "Surgical follow up note",	 
             "Trauma Notes",
             "TB Intake note",
             "Tuberculosis follow(TBFU) up note",
@@ -66,7 +67,8 @@
 	    "Leprosy note",
 	    "Kalazar note",
 	    "Animal bite note",
-	    "Snake bite note"
+	    "Snake bite note",
+            "COVID-19 Screening"
         ],
         "male": [],
         "female": [

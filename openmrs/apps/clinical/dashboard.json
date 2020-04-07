@@ -762,11 +762,28 @@
                 },
                 "displayOrder": 8
             },
+            "observation": {
+                "translationKey": "DASHBOARD_TITLE_PROCEDURE_KEY",
+                "type": "procedure",
+                "isObservation": true,
+                "dashboardConfig": {
+                    "showDetailsButton": true,
+                    "conceptNames": [
+                        "Procedure Notes, Procedure",
+                        "Procedure Notes, Ortho Procedure Location",
+                        "Procedure Notes, Ortho Procedure, Procedure",
+                        "Procedure Notes, Specific Intervention",
+                        "Procedure Notes, Anesthesia"
+                    ],
+                    "numberOfVisits": 1
+                },
+                "displayOrder": 9
+            },
             "Radiology Orders": {
                 "type": "pacsOrders",
                 "translationKey": "Radiology Orders",
                 "orderType": "Radiology Order",
-                "displayOrder": 9,
+                "displayOrder": 10,
                 "dashboardConfig": {
                     "numberOfVisits": 1,
                     "pacsImageUrl": "/oviyam2/viewer.html?patientID={{patientID}}&accessionNumber={{orderNumber}}&serverName=dcm4chee"

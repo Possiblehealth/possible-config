@@ -1266,7 +1266,21 @@
 			}]
 		}
 	},
-	
+	"EWARS Plus": {
+		"name": "EWARS Plus",
+		"DHISProgram": true,
+		"type": "concatenated",
+		"config": {
+			"reports": [{
+				"name": "EWARS Plus",
+				"type": "MRSGeneric",
+				"config": {
+					"sqlPath": "/var/www/bahmni_config/openmrs/reports/hmis/Covid19/Covid19.sql"
+				}
+			}]
+		}
+	},
+
 	"Anesthesia_number_of_clients_served": {
 		"name": "Anesthesia Number of Clients Served",
 		"type": "MRSGeneric",
