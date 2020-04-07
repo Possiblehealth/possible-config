@@ -74,4 +74,4 @@ FROM
         INTERVAL rag.max_days DAY))
         AND rag.report_group_name = 'Inpatient'
 GROUP BY  rag.name,gender.gender 
-ORDER BY FIELD(rag.name, '≤ 28 Days','29 Days ‐ 1 Year','01 ‐ 04 Years','05 ‐ 14 years','15 ‐ 19 Years','20 ‐ 29 Years','30 ‐ 39 Years','40 ‐ 49 Years','50 ‐ 59 Years','≥ 60 Years'), gender.gender ;
+ORDER BY FIELD(rag.name, '≤ 28 Days','29 Days ‐ 1 Year','01 ‐ 04 Years','05 ‐ 14 years','15 ‐ 19 Years','20 ‐ 29 Years','30 ‐ 39 Years','40 ‐ 49 Years','50 ‐ 59 Years','≥ 60 Years'), gender.gender desc ;
