@@ -31,5 +31,5 @@ INNER JOIN
          INNER JOIN 
          concept_name cn2 ON o1.concept_id = cn2.concept_id
         AND cn2.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn2.name ='Discharge note, Admission Date'
+        AND cn2.name ='Discharge note-Admission date'
  ORDER BY TIMESTAMPDIFF(DAY, visit.date_started, visit.date_stopped) DESC;
