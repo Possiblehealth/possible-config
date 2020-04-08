@@ -72,12 +72,15 @@ FROM
         obs o1
     INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
         AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Acute nasopharyngitis (Common cold)','Fever, unspecified',
+        AND cn1.name IN ('Coded Diagnosis')
+        INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
+        AND cn2.concept_name_type = 'FULLY_SPECIFIED'
+		AND cn2.name IN ('Acute nasopharyngitis (Common cold)','Fever, unspecified',
 						'Cough','Myalgia')
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
     INNER JOIN person p1 ON o1.person_id = p1.person_id
     WHERE
-        DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_Influenza_Like_Illness
+         DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_Influenza_Like_Illness
  -- -------------------------- Number of new cases hospitalized due to (SARI) -- --------------------------
 UNION ALL
 SELECT
@@ -89,28 +92,51 @@ FROM
         obs o1
     INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
         AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('SARI-Severe Acute Respiratory Infection')
-    INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
+        AND cn1.name IN ('Coded Diagnosis')
+	INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
+        AND cn2.concept_name_type = 'FULLY_SPECIFIED'
+		AND cn2.name IN ('SARI-Severe Acute Respiratory Infection')
     INNER JOIN person p1 ON o1.person_id = p1.person_id
+    INNER JOIN patient p ON p1.person_id = p.patient_id
+	INNER JOIN visit v ON  p.patient_id = v.patient_id
+    INNER JOIN visit_attribute AS va ON va.visit_id = v.visit_id AND va.value_reference = 'IPD'
+	INNER JOIN visit_attribute_type vat ON vat.visit_attribute_type_id = va.attribute_type_id 
+    AND vat.name = 'Visit Status' 
     WHERE
-        DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_SARI
+         DATE(v.date_started) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_SARI
 -- -------------------------- Number of death due to SARI -- --------------------------
 UNION ALL
 SELECT
 0,0,0,0,SUM(total_SARI_death) as c5,0,0,0,0,0,0
 FROM    
+(SELECT count(distinct(second.sari) ) as total_SARI_death
+FROM
 (SELECT 
-		count(distinct(o1.person_id)) as total_SARI_death
+      o1.person_id as death
     FROM
         obs o1
     INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
         AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Death Note, Primary Cause of Death')
-        AND cn1.name IN ('SARI-Severe Acute Respiratory Infection')
+        AND cn1.name IN ('Death note-Death type')
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
     INNER JOIN person p1 ON o1.person_id = p1.person_id
     WHERE
-        DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_SARI_death
+        DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#'))as first
+        LEFT OUTER JOIN
+(SELECT 
+		o1.person_id as sari
+    FROM
+        obs o1
+    INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
+        AND cn1.concept_name_type = 'FULLY_SPECIFIED'
+        AND cn1.name IN ('Coded Diagnosis')
+        INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
+        AND cn2.concept_name_type = 'FULLY_SPECIFIED'
+		AND cn2.name IN ('SARI-Severe Acute Respiratory Infection')
+    INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
+    INNER JOIN person p1 ON o1.person_id = p1.person_id
+    WHERE
+        DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#'))as second ON second.sari=first.death) as total_SARI_death
 -- --------------------------No. of cases with ILI/SARI sample collected/referred for influenza test-- --------------------------
 UNION ALL
 SELECT
@@ -173,18 +199,34 @@ UNION ALL
 SELECT
 0,0,0,0,0,0,0,0,SUM(total_referred) as c9,0,0
 FROM
+(SELECT count(distinct(second.referred) ) as total_referred
+FROM
 (SELECT 
-		count(distinct(o1.person_id)) as total_referred
+      o1.person_id as symptom
     FROM
         obs o1
     INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
         AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Referred for Investigations','Referred for Further Care')
         AND cn1.name IN ('Covid-Symptoms')
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
     INNER JOIN person p1 ON o1.person_id = p1.person_id
     WHERE
-        DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_referred
+DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#'))as first
+        LEFT OUTER JOIN
+(SELECT 
+		o1.person_id as referred
+    FROM
+        obs o1
+    INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
+        AND cn1.concept_name_type = 'FULLY_SPECIFIED'
+        AND cn1.name IN ('Disposition')
+        INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
+        AND cn2.concept_name_type = 'FULLY_SPECIFIED'
+		AND cn2.name IN ('Referred for Investigations','Referred for Further Care')
+    INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
+    INNER JOIN person p1 ON o1.person_id = p1.person_id
+    WHERE
+        DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#'))as second ON second.referred=first.symptom) as total_referred
 -- ---------------------total_sample-------------------------
 UNION ALL
 SELECT
