@@ -1851,7 +1851,8 @@
                 	      	"required": true
 			},
 			"Covid-Symptoms":{
-			      	"required": true
+			      	"required": true,
+				"multiSelect": true
 			}, 
 			"Coivd-Sample collected": {
 				"required": true
