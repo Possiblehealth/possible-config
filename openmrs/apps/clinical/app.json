@@ -232,6 +232,9 @@
 			"CHP Registration, Ward Number": {
 				"required": true
 			},
+			"Death note-Death type": {
+				"required": true
+			},
 			"CHP Registration, House Number": {
 				"required": true
 			},
