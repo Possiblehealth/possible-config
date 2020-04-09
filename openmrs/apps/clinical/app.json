@@ -253,7 +253,7 @@
 			"USG, Cleaned before use?": {
 				"required": true
 			},
-			"ANC-USG placenta position": {
+			"ANC-USG Placenta Position": {
 				"required": true
 			},			
 			"CHP ANC, Follow up": {
