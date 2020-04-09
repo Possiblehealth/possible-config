@@ -22,7 +22,8 @@ SUM(final.c14) as HCV_total,
 SUM(final.c14p) as HCV_Postive,
 SUM(final.c14n) as HCV_Negative,
 SUM(final.c15) as CPK_NAC,
-SUM(final.c16) as AFBsputum
+SUM(final.c16) as AFBsputum,
+SUM(final.c16p) as AFBsputum_Positive
 FROM
 -- --------------------------- all protein--------------------------
 (SELECT
@@ -49,7 +50,8 @@ SUM(total_count1) as c1,
 0 as c14p,
 0 as c14n,
 0 as c15,
-0 as c16
+0 as c16,
+0 as c16p
 FROM
 (SELECT DISTINCT
 
@@ -71,7 +73,7 @@ order by ts.name) as protein
 -- --------------------------other bio-chemistry---------------------
 UNION ALL
 SELECT
-0,SUM(total_count2) as c2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,SUM(total_count2) as c2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -94,7 +96,7 @@ order by ts.name) as other_bio_chemistry_count
 -- ---------------------gm_stain-------------------------
 UNION ALL
 SELECT
-0,0,SUM(total_count3) as c3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,SUM(total_count3) as c3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -117,7 +119,7 @@ order by ts.name) as gm_stain
 -- --------------body_fluid_culture------------------------------
 UNION ALL
 SELECT
-0,0,0,SUM(total_count4) as c4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,SUM(total_count4) as c4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -139,7 +141,7 @@ order by ts.name) as body_fluid_culture
 -- ----------------body_fluid_afb--------------------
 UNION ALL
 SELECT
-0,0,0,0,SUM(total_count5) as c5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,SUM(total_count5) as c5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -162,7 +164,7 @@ order by ts.name) as body_fluid_afb
 -- ---------------------------TPHA--------------------------
 UNION ALL
 SELECT
-0,0,0,0,0,SUM(total_count6) as c6,SUM(positive) as c6p, SUM(negative) as c6n,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,SUM(total_count6) as c6,SUM(positive) as c6p, SUM(negative) as c6n,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -185,7 +187,7 @@ order by ts.name) as TPHA
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,SUM(total_count7) as c7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,SUM(total_count7) as c7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -208,7 +210,7 @@ order by ts.name) as Sugar_F
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,SUM(total_count8) as c8,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,SUM(total_count8) as c8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -231,7 +233,7 @@ order by ts.name) as Sugar_PP
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,0,SUM(total_count9) as c9,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,SUM(total_count9) as c9,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -254,7 +256,7 @@ order by ts.name) as Sugar_R
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,0,0,SUM(total_count10) as c10,SUM(positive) as c10p, SUM(negative) as c10n,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,SUM(total_count10) as c10,SUM(positive) as c10p, SUM(negative) as c10n,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -277,7 +279,7 @@ order by ts.name) as HIV
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,0,SUM(total_count11) as c11,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,SUM(total_count11) as c11,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -300,7 +302,7 @@ order by ts.name) as PT_INR
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count12) as c12,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count12) as c12,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
   ts.name       AS department,
@@ -321,7 +323,7 @@ order by ts.name) as Other_Hematology
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count13) as c13,SUM(positive) as c13p, SUM(negative) as c13n,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count13) as c13,SUM(positive) as c13p, SUM(negative) as c13n,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -344,7 +346,7 @@ order by ts.name) as HBsAg
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count14) as c14,SUM(positive) as c14p, SUM(negative) as c14n,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count14) as c14,SUM(positive) as c14p, SUM(negative) as c14n,0,0,0
 FROM
 (SELECT DISTINCT
 
@@ -367,7 +369,7 @@ order by ts.name) as HCV
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count15) as c15,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count15) as c15,0,0
 FROM
 (SELECT DISTINCT
 
@@ -389,7 +391,7 @@ order by ts.name) as CPK_NAC
 -- ---------------AFB--------------------
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count16) as c16
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count16) as c16,SUM(positive) as c16p
 FROM
 (SELECT DISTINCT
 
