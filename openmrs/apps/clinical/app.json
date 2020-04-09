@@ -250,7 +250,7 @@
 			"CHP ANC, Visit type": {
 				"required": true
 			},
-			"USG-Cleaned before use": {
+			"USG-Cleaned before use?": {
 				"required": true
 			},
 			"ANC-USG placenta position": {
