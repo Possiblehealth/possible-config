@@ -4,7 +4,7 @@ SELECT
 FROM
     (SELECT 
         question_concept_name.concept_id AS question,
-            IFNULL(question_concept_name.name) AS answer_name
+            question_concept_name.name AS answer_name
     FROM
         concept c
     INNER JOIN concept_datatype cd ON c.datatype_id = cd.concept_datatype_id

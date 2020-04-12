@@ -29,7 +29,7 @@ FROM
    INNER JOIN nonVoidedQuestionAnswerObs ancVisit ON ancVisit.person_id = this_month.patient
 WHERE last_9_months.patient IS NULL
       AND ancVisit.question_full_name = 'ANC-ANC visit'
-      AND ancVisit.answer_full_name = 'ANC, 1st (any time)'
+      AND ancVisit.answer_full_name = 'ANC-1st (any time)'
       AND date(ancVisit.obs_datetime) BETWEEN '#startDate#' AND '#endDate#'
 UNION ALL
 
@@ -71,7 +71,7 @@ WHERE dewormTablet.question_full_name = 'ANC-Albendazole given'
    INNER JOIN nonVoidedQuestionAnswerObs ancVisit ON ancVisit.person_id = deworm.person_id
 WHERE last_9_months.patient IS NULL
       AND ancVisit.question_full_name = 'ANC-ANC visit'
-      AND ancVisit.answer_full_name = 'ANC, 1st (any time)'
+      AND ancVisit.answer_full_name = 'ANC-1st (any time)'
       AND date(ancVisit.obs_datetime) BETWEEN '#startDate#' AND '#endDate#'
       
 UNION ALL
