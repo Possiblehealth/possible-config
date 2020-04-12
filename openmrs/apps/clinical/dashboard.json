@@ -683,7 +683,7 @@
                     "showDetailsButton": true,
                     "conceptNames": [
                         "USG, Probe Used",
-                        "USG, Cleaned before use?",
+                        "USG-Cleaned before use",
                         "USG, Findings",
                         "USG, Remarks",
                         "USG, Cleaned after use?"
