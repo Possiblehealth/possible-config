@@ -22,8 +22,8 @@
 	],
 	"config": {
 		"hideConditions": false,
-		"enableNepaliCalendar": false,
-		"displayNepaliDates": false,
+		"enableNepaliCalendar": true,
+		"displayNepaliDates": true,
 		"filterObservationTemplates": true,
 		"defaultVisitType": "General",
 		"visitTypeForRetrospectiveEntries": "General",
@@ -250,6 +250,12 @@
 			"CHP ANC, Visit type": {
 				"required": true
 			},
+			"USG, Cleaned before use?": {
+				"required": true
+			},
+			"ANC-USG Placenta Position": {
+				"required": true
+			},			
 			"CHP ANC, Follow up": {
 				"required": false,
 				"allowFutureDates": true
@@ -1851,7 +1857,8 @@
                 	      	"required": true
 			},
 			"Covid-Symptoms":{
-			      	"required": true
+			      	"required": true,
+				"multiSelect": true
 			}, 
 			"Coivd-Sample collected": {
 				"required": true
