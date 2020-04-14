@@ -12,7 +12,7 @@ FROM (SELECT
          FROM reporting_age_group rag, concept_name cn, (SELECT DISTINCT value_reference
                                                          FROM visit_attribute va
                                                          WHERE va.visit_attribute_id IS NOT NULL ) va
-         WHERE rag.report_group_name = 'All Ages' AND cn.name IN ('USG Notes','ECG Notes') AND
+         WHERE rag.report_group_name = 'All Ages' AND cn.name IN ('USG Notes','ECG Note') AND
                cn.concept_name_type = 'FULLY_SPECIFIED') base
         LEFT OUTER JOIN
         (SELECT
@@ -49,7 +49,7 @@ FROM (SELECT
                      DATE_ADD(birthdate, INTERVAL rag.max_years YEAR), INTERVAL rag.max_days DAY))
                                                        AND rag.report_group_name = 'All Ages'
                WHERE
-                 cn.name IN ('USG Notes','ECG Notes') AND cast(v.date_stopped AS DATE) BETWEEN '#startDate#' AND '#endDate#' AND
+                 cn.name IN ('USG Notes','ECG Note') AND cast(v.date_stopped AS DATE) BETWEEN '#startDate#' AND '#endDate#' AND
                  obs.voided IS FALSE
                GROUP BY cn.name, cn.concept_id, va.value_reference, rag.name, rag.sort_order, p.person_id) result
          GROUP BY concept_name, age_group, visit_type
