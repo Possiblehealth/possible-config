@@ -396,7 +396,7 @@
         }
       ]
     },
-	  "Safe abortion (SA) note Total":{
+	  "Safe Abortion Total":{
       "dataValues": [
         {
           "categoryOptionCombo": "kdsirVNKdhm",
@@ -425,7 +425,7 @@
 		]
 	},
 	
-    "Safe abortion (SA) note Service":{
+    "Safe Abortion Service":{
       "dataValues": [
         {
           "categoryOptionCombo": "kdsirVNKdhm",
@@ -447,7 +447,7 @@
         }
       ]
     },
-	"Safe abortion (SA) note Family Planning":{
+	"Safe Abortion Family Planning":{
       "dataValues": [
        
         {
