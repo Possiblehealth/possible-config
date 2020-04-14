@@ -347,6 +347,13 @@
 					"config": {
 						"sqlPath": "/var/www/bahmni_config/openmrs/reports/hmis/06-Safe_Motherhood_Program/Safe_Abortion_Total.sql"
 					}
+				},
+{
+					"name": "Aama Program",
+					"type": "MRSGeneric",
+					"config": {
+						"sqlPath": "/var/www/bahmni_config/openmrs/reports/hmis/06-Safe_Motherhood_Program/Aama_Program.sql"
+					}
 				}
 			]
 		}
