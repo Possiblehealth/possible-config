@@ -251,18 +251,10 @@ UNION ALL
 SELECT
 0,0,0,0,0,0,0,0,0,0,SUM(total_unoccupied_bed) as c11
 FROM
-(SELECT 
-        DISTINCT count(o1.person_id) as total_unoccupied_bed
-    FROM
-        obs o1
-    INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
-        AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Coivd-Sample collected')
-    INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
-        AND cn2.concept_name_type = 'FULLY_SPECIFIED'
-		AND cn2.name IN ('Yes')
-    INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
-    INNER JOIN person p1 ON o1.person_id = p1.person_id
-    WHERE
-         DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_unoccupied_bed
+(SELECT count(*) as total_unoccupied_bed
+FROM bed b
+JOIN bed_location_map blm on b.bed_id = blm.bed_id
+JOIN location l on l.location_id = blm.location_id
+AND l.name IN('Covid Isolation Ward','Isolation Ward') 
+WHERE b.status = 'AVAILABLE') as total_unoccupied_bed
 ) final
