@@ -1875,6 +1875,12 @@
 			},
 			"Depression-Safety planning":{
 				"multiSelect": true
+			},
+			"Covid-Local exposure": {
+				"required": true
+			},
+			"Covid-Travel history": {
+				"required": true
 			}
 		},
 		"visitPage": {
