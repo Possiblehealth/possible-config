@@ -104,7 +104,7 @@ FROM
     INNER JOIN obs AS previously_tested ON previously_tested.encounter_id = encounter.encounter_id
         AND previously_tested.voided = 0
     INNER JOIN concept_view AS previously_tested_concept ON previously_tested.concept_id = previously_tested_concept.concept_id
-        AND previously_tested_concept.concept_full_name = 'HTC-Result if tested'
+        AND previously_tested_concept.concept_full_name = 'HTC-Informed consent'
     INNER JOIN concept_view AS value_tested ON value_tested.concept_id = previously_tested.value_coded
     INNER JOIN person ON previously_tested.person_id = person.person_id) AS tested_before ON patients.pid = tested_before.person_id
 
