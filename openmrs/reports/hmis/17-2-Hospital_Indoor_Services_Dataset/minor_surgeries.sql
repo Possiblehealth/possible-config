@@ -6,7 +6,7 @@ FROM
 
     (SELECT 'M' AS gender UNION SELECT 'F' AS gender ) gender 
         LEFT  JOIN
-	(SELECT DISTINCT value_reference AS type FROM visit_attribute) visit_type on visit_type.type in ('OPD','IPD')
+	(SELECT DISTINCT value_reference AS type FROM visit_attribute) visit_type on visit_type.type in ('OPD','IPD','ER')
        left join
     (SELECT 
         distinct pi.identifier AS ip,
