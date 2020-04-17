@@ -28,6 +28,5 @@ from
               and answer.concept_id = result.answer_concept_id
               and gender.gender = result.gender
 GROUP BY question.concept_full_name, answer.concept_full_name, gender.gender
-ORDER BY answer.concept_full_name,gender.gender;
-ORDER BY answer.concept_full_name,gender.gender;
+ORDER BY gender.gender;
 
