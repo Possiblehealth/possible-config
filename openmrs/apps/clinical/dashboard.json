@@ -324,6 +324,18 @@
                     "showDetailsButton": true
                 },
                 "displayOrder": 17
+              },
+            "SexuallyTransmittedDiseases": {
+                "title": "Sexually Transmitted Disseases",
+                "type": "observation",
+                "isObservation": true,
+                "dashboardConfig": {
+                    "showDetailsButton": true,
+                    "conceptNames": ["Depression-Severity of depression","PTSD-PCL Total"],
+                    "numberOfVisits": 1
+                },
+                "displayOrder": 18
+                  
             },
             "communityHealth": {
                 "translationKey": "DASHBOARD_TITLE_COMMUNITY_HEALTH_KEY",
