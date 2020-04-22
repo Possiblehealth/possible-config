@@ -293,22 +293,7 @@
                 "displayOrder": 15,
                 "scope": "latest"
             },
-            "mentalHealth": {
-                "translationKey": "DASHBOARD_TITLE_MENTAL_HEALTH_KEY",
-                "templateName": "Mental Health Disease Template",
-                "type": "diseaseTemplate",
-                "showOnly": [],
-                "showDetailsButton": true,
-                "dashboardConfig": {
-                    "showOnly": [],
-                    "showDetailsButton": true
-                },
-                "expandedViewConfig": {
-                    "showOnly": [],
-                    "showDetailsButton": true
-                },
-                "displayOrder": 16
-            },
+           
             "hiv": {
                 "translationKey": "DASHBOARD_TITLE_HIV_KEY",
                 "templateName": "HIV Profile",
