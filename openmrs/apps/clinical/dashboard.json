@@ -310,8 +310,8 @@
                 },
                 "displayOrder": 17
               },
-            "SexuallyTransmittedDiseases": {
-                "title": "Sexually Transmitted Disseases",
+            "MentalHealth": {
+                "title": "Mental Health",
                 "type": "observation",
                 "isObservation": true,
                 "dashboardConfig": {
