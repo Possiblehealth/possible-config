@@ -316,7 +316,7 @@
                 "isObservation": true,
                 "dashboardConfig": {
                     "showDetailsButton": true,
-                    "conceptNames": ["Depression-Severity of depression","PTSD-PCL Total"],
+                    "conceptNames": ["Depression-Severity of depression","PTSD-PCL Total","Depression-PHQ9 Total","PTSD PCL C-Confirm PTSD","Psychosis-Follow Up","Psychosis FU-Meds-EPS management"],
                     "numberOfVisits": 1
                 },
                 "displayOrder": 18
