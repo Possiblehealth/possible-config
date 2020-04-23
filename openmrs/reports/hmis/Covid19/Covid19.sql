@@ -39,7 +39,7 @@ FROM
     INNER JOIN patient p ON p1.person_id = p.patient_id
 	INNER JOIN visit v ON  p.patient_id = v.patient_id
     WHERE
-        DATE(p.date_created) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_opd_er
+        DATE(v.date_started) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_opd_er
 -- --------------------------- Number of Fever or acute respiratory symptoms--------------------------
 UNION ALL
 SELECT
@@ -148,10 +148,10 @@ FROM
         obs o1
     INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
         AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Coivd-Sample collected')
+        AND cn1.name IN ('Covid-Sample collected')
     INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
         AND cn2.concept_name_type = 'FULLY_SPECIFIED'
-		AND cn2.name IN ('Yes')
+		AND cn2.name IN ('PCR','RDT')
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
     INNER JOIN person p1 ON o1.person_id = p1.person_id
     WHERE
@@ -180,20 +180,12 @@ UNION ALL
 SELECT
 0,0,0,0,0,0,0,SUM(total_isolation) as c8,0,0,0
 FROM
-(SELECT 
-       count(DISTINCT(o1.person_id)) as total_isolation
-    FROM
-        obs o1
-    INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
-        AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Covid-Management')
-    INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
-        AND cn2.concept_name_type = 'FULLY_SPECIFIED'
-	AND cn2.name IN ('Covid-Admission')
-    INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
-    INNER JOIN person p1 ON o1.person_id = p1.person_id
-    WHERE
-        DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) as total_isolation
+(SELECT count(*) as total_isolation
+FROM bed b
+JOIN bed_location_map blm on b.bed_id = blm.bed_id
+JOIN location l on l.location_id = blm.location_id
+AND l.name IN('Covid Isolation Ward') 
+WHERE b.status = 'OCCUPIED') as total_isolation
 -- --------------------------referred to other hospital---------------------
 UNION ALL
 SELECT
@@ -219,10 +211,10 @@ DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#'))as 
         obs o1
     INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
         AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Disposition')
+        AND cn1.name IN ('Covid-Management')
         INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
         AND cn2.concept_name_type = 'FULLY_SPECIFIED'
-		AND cn2.name IN ('Referred for Investigations','Referred for Further Care')
+		AND cn2.name IN ('Referred to higher center')
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
     INNER JOIN person p1 ON o1.person_id = p1.person_id
     WHERE
@@ -238,10 +230,10 @@ FROM
         obs o1
     INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
         AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name IN ('Coivd-Sample collected')
+        AND cn1.name IN ('Covid-Sample collected')
     INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
         AND cn2.concept_name_type = 'FULLY_SPECIFIED'
-		AND cn2.name IN ('Yes')
+		AND cn2.name IN ('PCR','RDT')
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
     INNER JOIN person p1 ON o1.person_id = p1.person_id
     WHERE
@@ -255,6 +247,6 @@ FROM
 FROM bed b
 JOIN bed_location_map blm on b.bed_id = blm.bed_id
 JOIN location l on l.location_id = blm.location_id
-AND l.name IN('Covid Isolation Ward','Isolation Ward') 
+AND l.name IN('Covid Isolation Ward') 
 WHERE b.status = 'AVAILABLE') as total_unoccupied_bed
 ) final
