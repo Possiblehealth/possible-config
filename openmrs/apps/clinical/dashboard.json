@@ -293,7 +293,22 @@
                 "displayOrder": 15,
                 "scope": "latest"
             },
-           
+           "mentalHealth": {
+                "translationKey": "DASHBOARD_TITLE_MENTAL_HEALTH_KEY",
+                "templateName": "Mental Health Disease Template",
+                "type": "diseaseTemplate",
+                "showOnly": [],
+                "showDetailsButton": true,
+                "dashboardConfig": {
+                    "showOnly": [],
+                    "showDetailsButton": true
+                },
+                "expandedViewConfig": {
+                    "showOnly": [],
+                    "showDetailsButton": true
+                },
+                "displayOrder": 16
+            },
             "hiv": {
                 "translationKey": "DASHBOARD_TITLE_HIV_KEY",
                 "templateName": "HIV Profile",
@@ -310,19 +325,7 @@
                 },
                 "displayOrder": 17
               },
-            "MentalHealth": {
-                "title": "Mental Health",
-                "type": "observation",
-                "isObservation": true,
-                "dashboardConfig": {
-                    "showDetailsButton": true,
-                    "conceptNames": ["Depression-Severity of depression","PTSD-PCL Total","Depression-PHQ9 Total","PTSD PCL C-Confirm PTSD","Psychosis-Follow Up","Psychosis FU-Meds-EPS management"],
-                    "numberOfVisits": 1
-                },
-                "displayOrder": 18
-                  
-            },
-            "communityHealth": {
+                "communityHealth": {
                 "translationKey": "DASHBOARD_TITLE_COMMUNITY_HEALTH_KEY",
                 "templateName": "Community Health Program Templates",
                 "type": "diseaseTemplate",
