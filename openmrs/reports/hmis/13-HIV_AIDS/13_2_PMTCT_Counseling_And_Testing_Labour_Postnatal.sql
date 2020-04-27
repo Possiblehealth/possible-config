@@ -132,7 +132,7 @@ FROM
         AND person.voided = 0
         INNER JOIN
     concept_name deliveryMethodConcept ON deliveryMethodConcept.concept_id = obs.concept_id
-        AND deliveryMethodConcept.name = 'Delivery note-Test performed in this delivery'
+        AND deliveryMethodConcept.name = 'Delivery-Test performed in this delivery?'
         AND deliveryMethodConcept.concept_name_type = 'FULLY_SPECIFIED'
 WHERE
     DATE(obs.obs_datetime) BETWEEN CAST('#startDate#' AS DATE) AND CAST('#endDate#' AS DATE) 

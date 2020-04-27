@@ -1,14 +1,22 @@
-SELECT 
-    first_answers.category AS 'Category',
-    IFNULL(SUM(IF (method IN ('Condoms', 'Pills', 'Depo provera'), method_count, 0)), 0) as 'short term',
-  IFNULL(SUM(IF (method IN ('Male sterilization', 'IUCD', 'Implant', 'Female sterilization'), method_count, 0)), 0) as 'long term'	
-	
+select
+first_answers.category,
 
-FROM
+
+    IFNULL(SUM(CASE
+                WHEN LOWER(method) LIKE '%condom%' THEN method_count
+				WHEN LOWER(method) LIKE '%pill%' THEN method_count
+				WHEN LOWER(method) LIKE '%depo provera%' THEN method_count
+                ELSE 0 END), 0)  AS 'short',
+	IFNULL(SUM(CASE
+                WHEN LOWER(method) LIKE '%male sterilization%' THEN method_count
+				WHEN LOWER(method) LIKE '%iucd%' THEN method_count
+                WHEN LOWER(method) LIKE '%implant%' THEN method_count
+                WHEN LOWER(method) LIKE '%female sterilization%' THEN method_count
+			ELSE 0 END), 0) AS 'long'
+from
     (SELECT DISTINCT
-        ca.answer_concept AS answer,
-            IFNULL(answer_concept_short_name.name, answer_concept_fully_specified_name.name) AS answer_name,
-            question_concept_name.name AS category
+            question_concept_name.name AS category,
+            question_concept_name.concept_id as question
     FROM
         concept c
     INNER JOIN concept_datatype cd ON c.datatype_id = cd.concept_datatype_id
@@ -19,20 +27,14 @@ FROM
     INNER JOIN concept_name answer_concept_fully_specified_name ON ca.answer_concept = answer_concept_fully_specified_name.concept_id
         AND answer_concept_fully_specified_name.concept_name_type = 'FULLY_SPECIFIED'
         AND answer_concept_fully_specified_name.name NOT IN ('Not applicable')
-        AND answer_concept_fully_specified_name.voided
-        IS FALSE
-    LEFT JOIN concept_name answer_concept_short_name ON ca.answer_concept = answer_concept_short_name.concept_id
-        AND answer_concept_short_name.concept_name_type = 'SHORT'
-        AND answer_concept_short_name.voided
-        IS FALSE
     WHERE
         question_concept_name.name IN ('SA-Surgical procedure' , 'SA-Medical procedure')
-            AND cd.name = 'Coded'
-    ORDER BY answer_name DESC) first_answers
-        LEFT OUTER JOIN
-    (SELECT DISTINCT
-        (o1.person_id),
+            ) first_answers
+    LEFT OUTER JOIN
+    (SELECT 
+	DISTINCT(o1.person_id) as person_id,
             cn2.concept_id AS answer,
+            cn2.name as answer_name,
             cn1.concept_id AS question
     FROM
         obs o1
@@ -48,28 +50,29 @@ FROM
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
     INNER JOIN visit v1 ON v1.visit_id = e.visit_id
     WHERE
-        CAST(v1.date_started AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#') group by person_id) first_concept ON first_concept.answer = first_answers.answer
-        LEFT OUTER JOIN
-    (SELECT 
-    distinct  o1.person_id as per_id,
-      count(distinct(o1.person_id)) as method_count,
-            cn2.concept_id AS answer,
-            cn2.name as method
+        CAST(e.encounter_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')
+        ) first_concept ON first_concept.question = first_answers.question
+  LEFT OUTER join        
+(SELECT DISTINCT
+      o1.person_id as per_id,
+        COUNT(DISTINCT o1.person_id) AS method_count,
+        cn2.concept_id AS answer,
+		cn2.name as method
     FROM
         obs o1
     INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
         AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-        AND cn1.name = 'Accepted family planning methods'
+        AND cn1.name IN ('Accepted family planning methods')
         AND o1.voided = 0
         AND cn1.voided = 0
     INNER JOIN concept_name cn2 ON o1.value_coded = cn2.concept_id
         AND cn2.concept_name_type = 'FULLY_SPECIFIED'
         AND cn2.voided = 0
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
-    INNER JOIN visit v1 ON v1.visit_id = e.visit_id
-    WHERE
-        CAST(v1.date_started AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#') group by method) second_concept ON 
-        first_concept.person_id = second_concept.per_id
-GROUP BY first_answers.category;
-
+    INNER JOIN person p1 ON o1.person_id = p1.person_id
+    INNER JOIN visit v ON v.visit_id = e.visit_id
+    WHERE       
+CAST(v.date_started AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#') group by per_id) second_concept ON 
+        first_concept.person_id = second_concept.per_id   
+        GROUP BY first_answers.category;
 
