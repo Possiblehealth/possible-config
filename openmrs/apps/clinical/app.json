@@ -1881,6 +1881,9 @@
 			},
 			"Covid-Travel history": {
 				"required": true
+			},
+			"HIVTC intake-Consent for home visit": {
+				"required": true
 			}
 		},
 		"visitPage": {
