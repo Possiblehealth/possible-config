@@ -11,7 +11,7 @@ SELECT
     END) AS 'Total Count'
 FROM
     (SELECT 
-        ca.answer_concept AS answer,
+       distinct ca.answer_concept AS answer,
             IFNULL(answer_concept_short_name.name, answer_concept_fully_specified_name.name) AS answer_name
     FROM
         concept c
@@ -33,7 +33,7 @@ FROM
             AND cd.name = 'Coded') first_answers
         INNER JOIN
     (SELECT 
-        ca.answer_concept AS answer,
+       distinct ca.answer_concept AS answer,
             IFNULL(answer_concept_short_name.name, answer_concept_fully_specified_name.name) AS answer_name
     FROM
         concept c
@@ -57,7 +57,7 @@ FROM
     reporting_age_group rag ON rag.report_group_name = 'All Ages'
         LEFT OUTER JOIN
     (SELECT 
-        o1.person_id,
+       distinct o1.person_id,
             cn2.concept_id AS answer,
             cn1.concept_id AS question,
             v1.visit_id AS visit_id,
@@ -79,7 +79,7 @@ FROM
         CAST(v1.date_stopped AS DATE) BETWEEN '#startDate#' AND '#endDate#') first_concept ON first_concept.answer = first_answers.answer
         LEFT OUTER JOIN
     (SELECT 
-        o1.person_id,
+       distinct o1.person_id,
             cn2.concept_id AS answer,
             cn1.concept_id AS question,
             v1.visit_id AS visit_id,

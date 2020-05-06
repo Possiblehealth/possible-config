@@ -56,16 +56,22 @@
     "Family Planning Program - Permanent FP method (Existing users)":{
       "dataValues": [
         {
+	"_comment": "numberOfPermContiFemaleUser",
           "categoryOptionCombo": "ye1QuAMRG5Z", 
           "dataElement": "lPDmcklspNe",
           "row": 1,
-          "column": 2
+          "column": 1,
+	"getElementBack": true,
+	"fieldValue": "numberOfPermContiFemaleUser"
         },
         {
+	"_comment": "numberOfPermContiMaleUser",
           "categoryOptionCombo": "PflKpozpO7b", 
           "dataElement": "lPDmcklspNe",
           "row": 1,
-          "column": 2
+          "column": 2,
+	"getElementBack": true,
+	"fieldValue": "numberOfPermContiMaleUser"
         }
       ]
     },
