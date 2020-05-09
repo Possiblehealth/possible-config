@@ -1884,6 +1884,9 @@
 			},
 			"HIVTC intake-Consent for home visit": {
 				"required": true
+			},
+			"Covid-Visit type": {
+				"required": true
 			}
 		},
 		"visitPage": {
