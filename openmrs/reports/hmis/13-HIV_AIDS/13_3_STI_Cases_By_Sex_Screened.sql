@@ -11,27 +11,7 @@ SELECT
     END) AS 'Patient Count'
 FROM
     (SELECT 
-        ca.answer_concept AS answer,
-            IFNULL(answer_concept_short_name.name, answer_concept_fully_specified_name.name) AS answer_name
-    FROM
-        concept c
-    INNER JOIN concept_datatype cd ON c.datatype_id = cd.concept_datatype_id
-    INNER JOIN concept_name question_concept_name ON c.concept_id = question_concept_name.concept_id
-        AND question_concept_name.concept_name_type = 'FULLY_SPECIFIED'
-        AND question_concept_name.voided IS FALSE
-    INNER JOIN concept_answer ca ON c.concept_id = ca.concept_id
-    INNER JOIN concept_name answer_concept_fully_specified_name ON ca.answer_concept = answer_concept_fully_specified_name.concept_id
-        AND answer_concept_fully_specified_name.concept_name_type = 'FULLY_SPECIFIED'
-        AND answer_concept_fully_specified_name.voided
-        IS FALSE
-    LEFT JOIN concept_name answer_concept_short_name ON ca.answer_concept = answer_concept_short_name.concept_id
-        AND answer_concept_short_name.concept_name_type = 'SHORT'
-        AND answer_concept_short_name.voided
-        IS FALSE
-    WHERE
-        question_concept_name.name = 'STI-STI counseling'
-            AND cd.name = 'Boolean' UNION SELECT 
-        answer_concept_fully_specified_name.concept_id AS answer,
+       DISTINCT answer_concept_fully_specified_name.concept_id AS answer,
             answer_concept_fully_specified_name.name AS answer_name
     FROM
         concept c
@@ -52,7 +32,7 @@ FROM
     (SELECT 'M' AS gender UNION SELECT 'F' AS gender UNION SELECT 'TG' AS gender) gender
         LEFT JOIN
     (SELECT 
-        o1.person_id,
+       DISTINCT o1.person_id,
             cn2.concept_id AS answer,
             cn1.concept_id AS question,
             v1.visit_id AS visit_id,
