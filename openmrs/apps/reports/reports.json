@@ -827,6 +827,13 @@
 						"sqlPath": "/var/www/bahmni_config/openmrs/reports/hmis/13-HIV_AIDS/13_3_STI_Cases_By_Etiology.sql"
 					}
 				},
+{
+					"name": "STI Cases-by Etiology Syphilis Treated",
+					"type": "MRSGeneric",
+					"config": {
+						"sqlPath": "/var/www/bahmni_config/openmrs/reports/hmis/13-HIV_AIDS/13_3_STI_Cases_By_Etiology_Syphilis_Treated.sql"
+					}
+				},
 				{
 					"name": "STI Cases-by Sex Screened",
 					"type": "MRSGeneric",
@@ -839,6 +846,13 @@
 					"type": "MRSGeneric",
 					"config": {
 						"sqlPath": "/var/www/bahmni_config/openmrs/reports/hmis/13-HIV_AIDS/13_3_STI_Cases_By_Sex_Treated.sql"
+					}
+				},
+{
+					"name": "STI Cases-by Sex Diagnosed",
+					"type": "MRSGeneric",
+					"config": {
+						"sqlPath": "/var/www/bahmni_config/openmrs/reports/hmis/13-HIV_AIDS/13_3_STI_Cases_By_Sex_Diagnosed.sql"
 					}
 				},
 
