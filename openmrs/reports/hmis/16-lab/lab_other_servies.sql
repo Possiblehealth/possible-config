@@ -279,7 +279,7 @@ order by ts.name) as HIV
 
 UNION ALL
 SELECT
-0,0,0,0,0,0,0,0,0,0,SUM(total_count11) as c11,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,SUM(total_count11) as c11,0,0,0,0,0,0,0,0,0,0
 FROM
 (SELECT DISTINCT
 

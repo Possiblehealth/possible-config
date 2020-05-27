@@ -1,10 +1,10 @@
 SELECT 
     gender_group.gender,
-    COUNT(DISTINCT (a.ip)) AS count_referred_out_ER
+    COUNT(a.ip) AS count_referred_out_ER
 FROM
     (SELECT 'M' AS gender UNION SELECT 'F' AS gender) gender_group
     
-    LEFT JOIN (SELECT DISTINCT
+    LEFT JOIN (SELECT 
           p1.person_id AS ip,
             p1.gender AS gender
     FROM
