@@ -20,7 +20,7 @@ FROM
         AND cn2.voided = 0
     INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
     INNER JOIN visit visit ON visit.visit_id = e.visit_id
-     INNER JOIN patient ON visit.patient_id = patient.patient_id AND DATE(visit.date_stopped) BETWEEN CAST('#startDate#' AS DATE) AND CAST('#endDate#' AS DATE) AND patient.voided = 0 AND visit.voided = 0
+     INNER JOIN patient ON visit.patient_id = patient.patient_id AND DATE(visit.date_stopped) BETWEEN CAST('2020-2-13' AS DATE) AND CAST('2020-3-13' AS DATE) AND patient.voided = 0 AND visit.voided = 0
      INNER JOIN person ON person.person_id = patient.patient_id AND person.voided = 0
      RIGHT OUTER JOIN reporting_age_group AS observed_age_group ON
                                                                   DATE(visit.date_stopped) BETWEEN (DATE_ADD(DATE_ADD(person.birthdate, INTERVAL observed_age_group.min_years YEAR), INTERVAL observed_age_group.min_days DAY))
@@ -28,3 +28,4 @@ FROM
    WHERE observed_age_group.report_group_name = 'Client Service Reports') AS client_visits
 GROUP BY client_visits.age_group
 ORDER BY client_visits.sort_order;
+
