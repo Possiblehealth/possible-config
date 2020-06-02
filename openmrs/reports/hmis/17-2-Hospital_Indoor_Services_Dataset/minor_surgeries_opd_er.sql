@@ -37,7 +37,7 @@ AND cn1.name IN ('ER General Notes, Free Health Service Code','Out Patient Detai
 INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
 INNER JOIN person p1 ON o1.person_id = p1.person_id
 WHERE
-CAST(e.encounter_datetime AS DATE) BETWEEN DATE('2020-02-13') AND DATE('2020-03-13')
+DATE(e.encounter_datetime) BETWEEN DATE('#startDate#') AND DATE('#endDate#')
 )as first on first.question=first_answers.question
 LEFT OUTER JOIN
 (SELECT
