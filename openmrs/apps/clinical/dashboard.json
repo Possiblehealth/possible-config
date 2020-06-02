@@ -293,7 +293,7 @@
                 "displayOrder": 15,
                 "scope": "latest"
             },
-            "mentalHealth": {
+           "mentalHealth": {
                 "translationKey": "DASHBOARD_TITLE_MENTAL_HEALTH_KEY",
                 "templateName": "Mental Health Disease Template",
                 "type": "diseaseTemplate",
@@ -324,8 +324,8 @@
                     "showDetailsButton": true
                 },
                 "displayOrder": 17
-            },
-            "communityHealth": {
+              },
+                "communityHealth": {
                 "translationKey": "DASHBOARD_TITLE_COMMUNITY_HEALTH_KEY",
                 "templateName": "Community Health Program Templates",
                 "type": "diseaseTemplate",

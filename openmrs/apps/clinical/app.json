@@ -22,8 +22,8 @@
 	],
 	"config": {
 		"hideConditions": false,
-		"enableNepaliCalendar": false,
-		"displayNepaliDates": false,
+		"enableNepaliCalendar": true,
+		"displayNepaliDates": true,
 		"filterObservationTemplates": true,
 		"defaultVisitType": "General",
 		"visitTypeForRetrospectiveEntries": "General",
@@ -1860,7 +1860,7 @@
 			      	"required": true,
 				"multiSelect": true
 			}, 
-			"Coivd-Sample collected": {
+			"Covid-Sample collected": {
 				"required": true
 			},
 			"Covid-Additional risk factor": {
@@ -1880,6 +1880,12 @@
 				"required": true
 			},
 			"Covid-Travel history": {
+				"required": true
+			},
+			"HIVTC intake-Consent for home visit": {
+				"required": true
+			},
+			"Covid-Visit type": {
 				"required": true
 			}
 		},
