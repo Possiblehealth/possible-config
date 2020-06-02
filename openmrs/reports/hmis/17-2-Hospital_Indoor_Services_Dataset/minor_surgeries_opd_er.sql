@@ -20,7 +20,7 @@ INNER JOIN concept_name question_concept_name ON c.concept_id = question_concept
 AND question_concept_name.concept_name_type = 'FULLY_SPECIFIED'
 AND question_concept_name.voided IS FALSE
 WHERE
-question_concept_name.name IN ('ER-Free health service code','OPD-Free health service code')
+question_concept_name.name IN ('ER General Notes, Free Health Service Code','Out Patient Details, Free Health Service Code')
 ) first_answers
 INNER JOIN
 (SELECT 'M' AS gender UNION SELECT 'F' AS gender) gender
@@ -33,7 +33,7 @@ FROM
 obs o1
 INNER JOIN concept_name cn1 ON o1.concept_id = cn1.concept_id
 AND cn1.concept_name_type = 'FULLY_SPECIFIED'
-AND cn1.name IN ('ER-Free health service code','OPD-Free health service code')
+AND cn1.name IN ('ER General Notes, Free Health Service Code','Out Patient Details, Free Health Service Code')
 INNER JOIN encounter e ON o1.encounter_id = e.encounter_id
 INNER JOIN person p1 ON o1.person_id = p1.person_id
 WHERE
