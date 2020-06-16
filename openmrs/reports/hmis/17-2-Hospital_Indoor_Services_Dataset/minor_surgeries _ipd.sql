@@ -19,7 +19,7 @@ FROM
       obs o 
       INNER JOIN concept_name cn1 ON o.concept_id = cn1.concept_id 
       AND cn1.concept_name_type = 'FULLY_SPECIFIED' 
-      AND cn1.name = 'Procedure-Procedure' 
+      AND cn1.name = 'Procedure Notes, Procedure' 
       AND o.voided = 0 
       AND cn1.voided = 0 
       INNER JOIN encounter e ON o.encounter_id = e.encounter_id 
