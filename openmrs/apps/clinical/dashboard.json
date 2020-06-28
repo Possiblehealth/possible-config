@@ -59,7 +59,7 @@
                 "type": "forms",
                 "dashboardConfig": {
                     "title": null,
-                    "maximumNoOfVisits": 1
+                    "maximumNoOfVisits": 2
                 },
                 "formGroup": ["Patient Vitals", "Acute OPD visit", "Acute Abdominal Complaint", "Acute HEENT Complaint",
                     "Acute MSK Complaint", "Acute Skin Complaint", "Acute GU Complaint", "ANC", "Asthma, Progress", "Burn Note", "Childhood Illness (Children aged below 2 months)",
