@@ -22,8 +22,8 @@
 	],
 	"config": {
 		"hideConditions": false,
-		"enableNepaliCalendar": false,
-		"displayNepaliDates": false,
+		"enableNepaliCalendar": true,
+		"displayNepaliDates": true,
 		"filterObservationTemplates": true,
 		"defaultVisitType": "General",
 		"visitTypeForRetrospectiveEntries": "General",
