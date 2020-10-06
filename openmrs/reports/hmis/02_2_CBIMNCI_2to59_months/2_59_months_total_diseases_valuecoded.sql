@@ -23,7 +23,7 @@ FROM
         AND answer_concept_short_name.voided
         IS FALSE
     WHERE
-        question_concept_name.name IN ('CBIMNCI 2 to 59-ARI classification' , 'Childhood Illness-Dehydration status', 'Childhood Illness-Diarrhoea present', 'CBIMNCI 2 to 59-Refered out')
+         question_concept_name.name IN ('CBIMNCI 2 to 59-ARI classification' , 'Childhood Illness-Dehydration status', 'Childhood Illness-Diarrhoea present', 'CBIMNCI 2 to 59-Refered out')
             AND cd.name = 'Coded'
     ORDER BY answer_name DESC) first_answers
         LEFT OUTER JOIN
