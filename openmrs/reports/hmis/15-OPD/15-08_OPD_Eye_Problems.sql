@@ -25,7 +25,7 @@ FROM
     FROM
         diagnosis_concept_view
     WHERE
-        icd10_code IN ('H10','A71','H26','H54','H52','H40','H53.5','H05.2','H00.0','H00.1','H11.0','E14.3†','H35','H02','H02.1','H26.1','H20','H35.3','H53.0','H50','H35.5','H53.6','C69.2')) first_answers
+        icd10_code IN ('H10.9','A71.9','H26','H54','H52.7','H40.9','H53.6','H05.9','H00','H11.0','E13','H35.6','H02.0','H02.1','H21.9','H20.9','H35.9','H53.2','H50.9','H53.9','C69')) first_answers
         LEFT OUTER JOIN
     (SELECT DISTINCT
         (p.person_id),
@@ -47,7 +47,7 @@ FROM
         AND o.voided = 0
         AND cn.voided = 0
   JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
-        AND dcv.icd10_code IN ('H10','A71','H26','H54','H52','H40','H53.5','H05.2','H00.0','H00.1','H11.0','E14.3†','H35','H02','H02.1','H26.1','H20','H35.3','H53.0','H50','H35.5','H53.6','C69.2')
+        AND dcv.icd10_code IN ('H10.9','A71.9','H26','H54','H52.7','H40.9','H53.6','H05.9','H00','H11.0','E13','H35.6','H02.0','H02.1','H21.9','H20.9','H35.9','H53.2','H50.9','H53.9','C69')
     WHERE
         p.voided = 0) first_concept ON first_concept.icd10_code = first_answers.icd10_code
         LEFT OUTER JOIN
@@ -72,4 +72,4 @@ FROM
         CAST(obs.obs_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
         AND first_concept.visit_id = second_concept.visit_id
 GROUP BY first_answers.icd10_code
-ORDER BY FIELD(first_answers.icd10_code,'H10','A71','H26','H54','H52','H40','H53.5','H05.2','H00.0','H00.1','H11.0','E14.3†','H35','H02','H02.1','H26.1','H20','H35.3','H53.0','H50','H35.5','H53.6','C69.2')
+ORDER BY FIELD(first_answers.icd10_code,'H10.9','A71.9','H26','H54','H52.7','H40.9','H53.6','H05.9','H00','H11.0','E13','H35.6','H02.0','H02.1','H21.9','H20.9','H35.9','H53.2','H50.9','H53.9','C69')

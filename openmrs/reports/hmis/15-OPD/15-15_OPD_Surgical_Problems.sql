@@ -25,8 +25,7 @@ FROM
     FROM
         diagnosis_concept_view
     WHERE
-        icd10_code IN ('K27','K60.2','K60.3','K63.2','N20.0','N63','N61','N64.4','D17','L72.1','L05','J32','K37','K81','K80','K46',
-        'N43','N47','I84','N45','N41','R69')) first_answers
+        icd10_code IN ('K27','K60.2','K60.3','K63.2','N20.0','N63','N61','N64.4','R22.9','L72.9','L05','K37','K81.0','K80','K46','N43.3','N47','I84','N45','N41.0','N41.1','N41.3','R69')) first_answers
         LEFT OUTER JOIN
     (SELECT DISTINCT
         (p.person_id),
@@ -48,8 +47,7 @@ FROM
         AND o.voided = 0
         AND cn.voided = 0
      JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
-        AND dcv.icd10_code IN ('K27','K60.2','K60.3','K63.2','N20.0','N63','N61','N64.4','D17','L72.1','L05','J32','K37','K81','K80','K46',
-        'N43','N47','I84','N45','N41','R69')
+        AND dcv.icd10_code IN ('K27','K60.2','K60.3','K63.2','N20.0','N63','N61','N64.4','R22.9','L72.9','L05','K37','K81.0','K80','K46','N43.3','N47','I84','N45','N41.0','N41.1','N41.3','R69')
     WHERE
         p.voided = 0) first_concept ON first_concept.icd10_code = first_answers.icd10_code
         LEFT OUTER JOIN
@@ -74,5 +72,4 @@ FROM
         CAST(obs.obs_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
         AND first_concept.visit_id = second_concept.visit_id
 GROUP BY first_answers.icd10_code
-ORDER BY FIELD(first_answers.icd10_code,'K27','K60.2','K60.3','K63.2','N20.0','N63','N61','N64.4','D17','L72.1','L05','J32','K37','K81','K80','K46',
-        'N43','N47','I84','N45','N41','R69')
+ORDER BY FIELD(first_answers.icd10_code,'K27','K60.2','K60.3','K63.2','N20.0','N63','N61','N64.4','R22.9','L72.9','L05','K37','K81.0','K80','K46','N43.3','N47','I84','N45','N41.0','N41.1','N41.3','R69')

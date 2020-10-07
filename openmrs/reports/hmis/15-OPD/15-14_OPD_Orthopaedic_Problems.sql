@@ -31,7 +31,7 @@ FROM
     FROM
         diagnosis_concept_view
     WHERE
-        icd10_code IN ('V89','M06','M13','M19','M54.9','S02.5','T14.2','S02.6','K03.81','S06.2','S05.9','S09','T14.1', 'W19')) first_answers
+        icd10_code IN ('T07','T08','T09.0','T09.3','T09.4','T09.5','T09.6','T10','T11.9','T12','T13.9','S94.1','S94.2','S94.3','S94.7','S95.0','S95.1','S95.7','S96.0','S96.1','S96.2','S96.7','S97.0','S97.1','S98.0','V89','M06','M13','M19','M54','S02.5','T14.2','S02.6','S06.2','S05.9','S09.0','T14', 'W19')) first_answers
         
         LEFT OUTER JOIN
     (SELECT DISTINCT
@@ -54,7 +54,7 @@ FROM
         AND o.voided = 0
         AND cn.voided = 0
      JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
-        AND dcv.icd10_code IN ('V89','M06','M13','M19','M54.9','S02.5','T14.2','S02.6','K03.81','S06.2','S05.9','S09','T14.1', 'W19')
+        AND dcv.icd10_code IN ('T07','T08','T09.0','T09.3','T09.4','T09.5','T09.6','T10','T11.9','T12','T13.9','S94.1','S94.2','S94.3','S94.7','S95.0','S95.1','S95.7','S96.0','S96.1','S96.2','S96.7','S97.0','S97.1','S98.0','V89','M06','M13','M19','M54','S02.5','T14.2','S02.6','S06.2','S05.9','S09.0','T14', 'W19')
     WHERE
         p.voided = 0) first_concept ON first_concept.icd10_code = first_answers.icd10_code
         LEFT OUTER JOIN
@@ -79,5 +79,5 @@ FROM
         CAST(obs.obs_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
         AND first_concept.visit_id = second_concept.visit_id
 GROUP BY first_answers.icd10_code
-ORDER BY FIELD(first_answers.icd10_code,'V89','M06','M13','M19','M54.9','S02.5','T14.2','S02.6','K03.81','S06.2','S05.9','S09','T14.1', 'W19')
+ORDER BY FIELD(first_answers.icd10_code,'T07','T08','T09.0','T09.3','T09.4','T09.5','T09.6','T10','T11.9','T12','T13.9','S94.1','S94.2','S94.3','S94.7','S95.0','S95.1','S95.7','S96.0','S96.1','S96.2','S96.7','S97.0','S97.1','S98.0','V89','M06','M13','M19','M54','S02.5','T14.2','S02.6','S06.2','S05.9','S09.0','T14', 'W19')
 

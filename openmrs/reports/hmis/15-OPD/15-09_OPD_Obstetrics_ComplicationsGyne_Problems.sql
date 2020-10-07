@@ -18,8 +18,7 @@ FROM
     FROM
         diagnosis_concept_view
     WHERE
-        icd10_code IN ('O00','O08','O13','O14','O15.0','O15.1','O15.2','O21','O46','O63','O64‐O66','S37','O72','O73','O75',
- 'O85','N73','N81.4','N92','N93','N97','N46')) first_answers
+        icd10_code IN ('O00.9','O08.9','O13','O14'.1,'O15.0','O15.1','O15.2','O21.0','O21.1','O46'.9,'O63.0','O64.9','O65.9','O71.1','O72','O73','O74.9','O75.0','O75.1','O75.2','O75.5','O75.7','O75.9','O85','N73.9','N81.4','N92.0','N93.9','N97.9','N46')) first_answers
         LEFT OUTER JOIN
     (SELECT DISTINCT
         (p.person_id),
@@ -41,8 +40,7 @@ FROM
         AND o.voided = 0
         AND cn.voided = 0
      JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
-        AND dcv.icd10_code IN ('O00','O08','O13','O14','O15.0','O15.1','O15.2','O21','O46','O63','O64‐O66','S37','O72','O73','O75',
- 'O85','N73','N81.4','N92','N93','N97','N46')
+        AND dcv.icd10_code IN ('O00.9','O08.9','O13','O14'.1,'O15.0','O15.1','O15.2','O21.0','O21.1','O46'.9,'O63.0','O64.9','O65.9','O71.1','O72','O73','O74.9','O75.0','O75.1','O75.2','O75.5','O75.7','O75.9','O85','N73.9','N81.4','N92.0','N93.9','N97.9','N46'
     WHERE
         p.voided = 0) first_concept ON first_concept.icd10_code = first_answers.icd10_code
         LEFT OUTER JOIN
@@ -67,6 +65,5 @@ FROM
         CAST(obs.obs_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
         AND first_concept.visit_id = second_concept.visit_id
 GROUP BY first_answers.icd10_code
-ORDER BY FIELD(first_answers.icd10_code,'O00','O08','O13','O14','O15.0','O15.1','O15.2','O21','O46','O63','O64‐O66','S37','O72','O73','O75',
- 'O85','N73','N81.4','N92','N93','N97','N46')
+ORDER BY FIELD(first_answers.icd10_code,'O00.9','O08.9','O13','O14'.1,'O15.0','O15.1','O15.2','O21.0','O21.1','O46'.9,'O63.0','O64.9','O65.9','O71.1','O72','O73','O74.9','O75.0','O75.1','O75.2','O75.5','O75.7','O75.9','O85','N73.9','N81.4','N92.0','N93.9','N97.9','N46'
 

@@ -25,7 +25,7 @@ FROM
     FROM
         diagnosis_concept_view
     WHERE
-        icd10_code IN ('H66.0','H66.1','J32','J03','J02','T16','T17.1','T17.2','H61.2','J33','J34.2','J31.0','H60','K21.0')) first_answers
+        icd10_code IN ('H66.0','H65.2','J01.9','J03.9','J02.9','T16','T17','T18','H61.9','J33.9','J34.2','H60.9','K21')) first_answers
         LEFT OUTER JOIN
     (SELECT DISTINCT
         (p.person_id),
@@ -47,7 +47,7 @@ FROM
         AND o.voided = 0
         AND cn.voided = 0
     JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
-        AND dcv.icd10_code IN ('H66.0','H66.1','J32','J03','J02','T16','T17.1','T17.2','H61.2','J33','J34.2','J31.0','H60','K21.0')
+        AND dcv.icd10_code IN ('H66.0','H65.2','J01.9','J03.9','J02.9','T16','T17','T18','H61.9','J33.9','J34.2','H60.9','K21')
     WHERE
         p.voided = 0) first_concept ON first_concept.icd10_code = first_answers.icd10_code
         LEFT OUTER JOIN
@@ -72,4 +72,4 @@ FROM
         CAST(obs.obs_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
         AND first_concept.visit_id = second_concept.visit_id
 GROUP BY first_answers.icd10_code
-ORDER BY FIELD(first_answers.icd10_code,'H66.0','H66.1','J32','J03','J02','T16','T17.1','T17.2','H61.2','J33','J34.2','J31.0','H60','K21.0')
+ORDER BY FIELD(first_answers.icd10_code,'H66.0','H65.2','J01.9','J03.9','J02.9','T16','T17','T18','H61.9','J33.9','J34.2','H60.9','K21')

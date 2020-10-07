@@ -25,7 +25,7 @@ FROM
     FROM
         diagnosis_concept_view
     WHERE
-        icd10_code IN ('C50','C53','C34','C15','C16','C73','C22','C25','C79.5','C23','C19','C06','C85','C56','C67','C11','C49.0','C80')) first_answers
+        icd10_code IN ('C50.9','C53','C34','C15.9','C1.96','C73','C22','C25','C79.5','C23','C18.9','C06','C85','C56','C67','C11','C49.9','C80.0')) first_answers
         LEFT OUTER JOIN
     (SELECT DISTINCT
         (p.person_id),
@@ -47,7 +47,7 @@ FROM
         AND o.voided = 0
         AND cn.voided = 0
      JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
-        AND dcv.icd10_code IN ('C50','C53','C34','C15','C16','C73','C22','C25','C79.5','C23','C19','C06','C85','C56','C67','C11','C49.0','C80')
+        AND dcv.icd10_code IN (C50.9','C53','C34','C15.9','C1.96','C73','C22','C25','C79.5','C23','C18.9','C06','C85','C56','C67','C11','C49.9','C80.0')
     WHERE
         p.voided = 0) first_concept ON first_concept.icd10_code = first_answers.icd10_code
         LEFT OUTER JOIN
@@ -72,4 +72,4 @@ FROM
         CAST(obs.obs_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
         AND first_concept.visit_id = second_concept.visit_id
 GROUP BY first_answers.icd10_code
-ORDER BY FIELD(first_answers.icd10_code,'C50','C53','C34','C15','C16','C73','C22','C25','C79.5','C23','C19','C06','C85','C56','C67','C11','C49.0','C80')
+ORDER BY FIELD(first_answers.icd10_code,'C50.9','C53','C34','C15.9','C1.96','C73','C22','C25','C79.5','C23','C18.9','C06','C85','C56','C67','C11','C49.9','C80.0')

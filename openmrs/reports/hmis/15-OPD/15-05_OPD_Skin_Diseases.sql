@@ -25,7 +25,7 @@ FROM
     FROM
         diagnosis_concept_view
     WHERE
-        icd10_code IN ('L70' , 'B07', 'L81.1', 'L50', 'L30.9', 'L65', 'L80','E70.3','B00','B02','L53.9','L01.0','L02','L02.0','L02.9','L43','B86','L81.5','L40','L04')) first_answers
+        icd10_code IN ('L70.9','B07','L81.1','L50.9','L30.9','L65', 'L80','E67','B00.9','B02','L53','L01','J34.0','J36','J85','J85.1','J85.2','K12.2','K61.0','K61.1','K61.2','K63.0','K75.0','L05.0','M65.0','N34.0','N76.4','O91.1','L02.9','L43.9','B86','L81.9','L40.9','L04.9')) first_answers
         LEFT OUTER JOIN
     (SELECT DISTINCT
         (p.person_id),
@@ -47,7 +47,7 @@ FROM
         AND o.voided = 0
         AND cn.voided = 0
     JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
-        AND dcv.icd10_code IN ('L70' , 'B07', 'L81.1', 'L50', 'L30.9', 'L65', 'L80','E70.3','B00','B02','L53.9','L01.0','L02','L02.0','L02.9','L43','B86','L81.5','L40','L04')
+        AND dcv.icd10_code IN ('L70.9','B07','L81.1','L50.9','L30.9','L65', 'L80','E67','B00.9','B02','L53','L01','J34.0','J36','J85','J85.1','J85.2','K12.2','K61.0','K61.1','K61.2','K63.0','K75.0','L05.0','M65.0','N34.0','N76.4','O91.1','L02.9','L43.9','B86','L81.9','L40.9','L04.9')
     WHERE
         p.voided = 0) first_concept ON first_concept.icd10_code = first_answers.icd10_code
         LEFT OUTER JOIN
@@ -72,4 +72,4 @@ FROM
         CAST(obs.obs_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
         AND first_concept.visit_id = second_concept.visit_id
 GROUP BY first_answers.icd10_code
-ORDER BY FIELD(first_answers.icd10_code,'L70' , 'B07', 'L81.1', 'L50', 'L30.9', 'L65', 'L80','E70.3','B00','B02','L53.9','L01.0','L02','L02.0','L02.9','L43','B86','L81.5','L40','L04')
+ORDER BY FIELD(first_answers.icd10_code,'L70.9','B07','L81.1','L50.9','L30.9','L65', 'L80','E67','B00.9','B02','L53','L01','J34.0','J36','J85','J85.1','J85.2','K12.2','K61.0','K61.1','K61.2','K63.0','K75.0','L05.0','M65.0','N34.0','N76.4','O91.1','L02.9','L43.9','B86','L81.9','L40.9','L04.9')

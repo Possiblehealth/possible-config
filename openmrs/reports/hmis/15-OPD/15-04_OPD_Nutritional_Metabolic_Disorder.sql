@@ -25,7 +25,7 @@ FROM
     FROM
         diagnosis_concept_view
     WHERE
-        icd10_code IN ('E04.9' , 'E14', 'E46', 'E50.9', 'E66.9', 'D64.9', 'G62.9')) first_answers
+        icd10_code IN ('E04.9' , 'E14', 'E46', 'E43', 'E66.9', 'D64.9', 'G62')) first_answers
         LEFT OUTER JOIN
     (SELECT DISTINCT
         (p.person_id),
@@ -47,7 +47,7 @@ FROM
         AND o.voided = 0
         AND cn.voided = 0
    JOIN diagnosis_concept_view dcv ON dcv.concept_id = o.value_coded
-        AND dcv.icd10_code IN ('E04.9' , 'E14', 'E46', 'E50.9', 'E66.9', 'D64.9', 'G62.9')
+        AND dcv.icd10_code IN ('E04.9' , 'E14', 'E46', 'E43', 'E66.9', 'D64.9', 'G62')
     WHERE
         p.voided = 0) first_concept ON first_concept.icd10_code = first_answers.icd10_code
         LEFT OUTER JOIN
@@ -72,4 +72,4 @@ FROM
         CAST(obs.obs_datetime AS DATE) BETWEEN DATE('#startDate#') AND DATE('#endDate#')) second_concept ON first_concept.person_id = second_concept.person_id
         AND first_concept.visit_id = second_concept.visit_id
 GROUP BY first_answers.icd10_code
-ORDER BY FIELD(first_answers.icd10_code,'E04.9' , 'E14', 'E46', 'E50.9', 'E66.9', 'D64.9', 'G62.9')
+ORDER BY FIELD(first_answers.icd10_code,'E04.9' , 'E14', 'E46', 'E43', 'E66.9', 'D64.9', 'G62')
