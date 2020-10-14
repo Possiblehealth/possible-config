@@ -1,8 +1,7 @@
 {
     "categories": {
         "common": [
-            "Patient Vitals",
-            "Acute OPD visit",
+            "OPD visit note",
             "Acute Abdominal Complaint",
             "Acute HEENT Complaint",
             "Acute MSK Complaint",
@@ -24,7 +23,7 @@
             "Diabetes, Progress",
             "Diabetes-Counseling",
             "Discharge note",
-            "DR TB Intake note",
+            "DR TB intake note",
             "ECG Note", 
             "ER general note",
             "HIV testing and counseling(HTC) note",
@@ -34,7 +33,7 @@
             "Hypertension, Progress",
             "Kalazar note",
             "Leprosy note",
-            "Malaria",
+            "Malaria note",
             "Mental Health Screener",
             "Operative note",
             "Opioid Substitution Therapy Intake Template",
@@ -55,41 +54,38 @@
             "Stroke OPD",
 	    "Surgical follow up note",	 
             "Trauma Notes",
-            "TB Intake note",
-	    "Tuberculosis follow(TBFU) up note",	
-            "Tuberculosis follow up note",
-            "DRTB follow up (DRTB FU) note",
+            "Tuberculosis intake note",
+            "Tuberculosis follow up (TBFU) note",
+            "DR TB follow up (DRTB FU) note",
             "USG Notes",
-            "TEST TEMPLATE (टेस्ट टेम्प्लेट)",
             "Animal bite note",
 	    "Family Planning Template",
             "Family planning and reproductive health(FRH) note",
 	    "Osteoarthritis QI note",
 	    "Leprosy note",
 	    "Kalazar note",
-	    "Animal bite note",
 	    "Snake bite note",
-            "COVID-19 Screening"
+        "COVID-19 Screening"
         ],
         "male": [],
         "female": [
-            "ANC Note",
+            "ANC note",
             "ANC-USG Note",
             "CHP Antenatal Care",
             "Delivery note",
             "PNC note",
             "Post Delivery Family Planning Checklist",
-            "Prevention of Mother-to-Child Transmission Intake Template",
+            "Prevention of mother to child transmission(PMTCT) note",
             "Reproductive Health-Note",
             "Safe abortion (SA) note",
 	    "Safe abortion QI note",
-	    "Antenatal checkup(ANC) note",
+	    "ANC note",
 	    "Safe abortion (SA) note",
-	    "Safe abortion"
+	    
         ],
         "lessThanTwoMonths":[
-            "CBIMNCI (<2 months child)",
-	    "Newborn admission (NBA) note"
+        "CBIMNCI <2 months child)",
+	    "Newborn admission(NBA) note"
         ],
         "infant": [
         ],
@@ -100,9 +96,10 @@
             "Nutrition",
             "MAM-SAM Counseling Note",
 	    "IMAM note",
-	    "Vaccine note",
-	    "IMAM note"
+	    "Vaccine note",        
+
         ]
     }
 
 }
+
