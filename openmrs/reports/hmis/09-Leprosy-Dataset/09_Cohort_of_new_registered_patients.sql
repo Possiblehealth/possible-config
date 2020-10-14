@@ -85,8 +85,8 @@ FROM
     SUM(IF(person.gender = 'M', 1, 0)) AS total_male,
 	SUM(IF(person.gender = 'F' && leprosy_deduction_type.value_concept_full_name = 'Release from Treatment – RFT', 1, 0)) AS rft_female ,
     SUM(IF(person.gender = 'M' && leprosy_deduction_type.value_concept_full_name = 'Release from Treatment – RFT', 1, 0)) AS rft_male ,
-   	SUM(IF(person.gender = 'F' && leprosy_deduction_type.value_concept_full_name = 'Defaulter – DF', 1, 0)) AS defaulter_female ,
-    SUM(IF(person.gender = 'M' && leprosy_deduction_type.value_concept_full_name = 'Defaulter – DF', 1, 0)) AS defaulter_male ,
+   	SUM(IF(person.gender = 'F' && leprosy_deduction_type.value_concept_full_name = 'Defaulter–DF', 1, 0)) AS defaulter_female ,
+    SUM(IF(person.gender = 'M' && leprosy_deduction_type.value_concept_full_name = 'Defaulter–DF', 1, 0)) AS defaulter_male ,
    	SUM(IF(person.gender = 'F' && (leprosy_deduction_type.value_concept_full_name = 'Other Deduction-OD'||leprosy_deduction_type.value_concept_full_name = 'Transfer Out-TO'), 1, 0)) AS other_female ,
     SUM(IF(person.gender = 'M' && (leprosy_deduction_type.value_concept_full_name = 'Other Deduction-OD'||leprosy_deduction_type.value_concept_full_name = 'Transfer Out-TO'), 1, 0)) AS other_male 
 FROM visit
