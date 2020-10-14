@@ -7,7 +7,7 @@ SELECT
 WHEN new_user.method = 'Vasectomy' THEN fp.vasectomy_user
 WHEN new_user.method = 'Pills' THEN fp.pills_user
 WHEN new_user.method = 'Other' THEN fp.other_user
-WHEN new_user.method = 'Mini-lap' THEN fp.minilap_user
+WHEN new_user.method = 'Minilap' THEN fp.minilap_user
 WHEN new_user.method = 'IUCD' THEN fp.IUCD_user
 WHEN new_user.method = 'Implant' THEN fp.implant_user
 WHEN new_user.method = 'Depo' THEN fp.depo_user
@@ -19,7 +19,7 @@ WHEN new_user.method = 'Condoms' THEN fp.condoms_user
 WHEN new_user.method = 'Vasectomy' THEN fp.vasectomy_user
 WHEN new_user.method = 'Pills' THEN fp.pills_user
 WHEN new_user.method = 'Other' THEN fp.other_user
-WHEN new_user.method = 'Mini-lap' THEN fp.minilap_user
+WHEN new_user.method = 'Minilap' THEN fp.minilap_user
 WHEN new_user.method = 'IUCD' THEN fp.IUCD_user
 WHEN new_user.method = 'Implant' THEN fp.implant_user
 WHEN new_user.method = 'Depo' THEN fp.depo_user

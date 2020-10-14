@@ -15,7 +15,7 @@ FROM
     INNER JOIN concept_answer ca ON c.concept_id = ca.concept_id
     INNER JOIN concept_name answer_concept_fully_specified_name ON ca.answer_concept = answer_concept_fully_specified_name.concept_id
         AND answer_concept_fully_specified_name.concept_name_type = 'FULLY_SPECIFIED'
-        		AND answer_concept_fully_specified_name.name NOT IN ('Vasectomy','Other','Mini-lap')
+        		AND answer_concept_fully_specified_name.name NOT IN ('Vasectomy','Other','Minilap')
 
         AND answer_concept_fully_specified_name.voided
         IS FALSE
