@@ -1,14 +1,14 @@
 SELECT
   final.BirthWeight AS 'Birth Weight',
   sum(final.TotalNo) AS 'Total',
-  sum(final.Asphyxia) AS Asphyxia,
+  sum(final.Asphyxiated) AS Asphyxiated,
   sum(final.Defect) AS Defect
 
 FROM
 -- ----------------------------------------------
 (SELECT T1.Weight_Category AS BirthWeight,
-Sum(IF(InfantStatus IN ('Defect','Asphyxia','Normal','New born status, Hypothermia','Jaundice'), 1, 0)) AS TotalNo,
-Sum(IF(InfantStatus = 'Asphyxia', 1, 0)) AS Asphyxia,
+Sum(IF(InfantStatus IN ('Defect','Asphyxiated','Normal','NBA-Hypothermia','Jaundice'), 1, 0)) AS TotalNo,
+Sum(IF(InfantStatus = 'Asphyxiated', 1, 0)) AS Asphyxiated,
 Sum(IF(InfantStatus = 'Defect', 1, 0)) AS Defect
 
 FROM
@@ -30,7 +30,7 @@ WHERE t5.name IN ('NBA-Neonate weight')
 AND t1.voided = 0 AND (DATE(t1.obs_datetime) BETWEEN '#startDate#' AND '#endDate#')) AS InfantBirthWeights
 INNER JOIN
 (SELECT distinct t1.encounter_id, CASE
-WHEN t2.name = 'Asphyxiated' THEN 'Asphyxia'
+WHEN t2.name = 'Asphyxiatedted' THEN 'Asphyxiated'
 WHEN t2.name ='Normal' THEN 'Normal'
 WHEN t2.name ='NBA-Hypothermia' THEN 'NBA-Hypothermia'
 WHEN t2.name ='Jaundice' THEN 'Jaundice'
@@ -44,7 +44,7 @@ INNER JOIN encounter t3 ON t1.encounter_id = t3.encounter_id
 INNER JOIN visit t4 ON t3.visit_id = t4.visit_id
 INNER JOIN concept_name t5 ON t1.concept_id = t5.concept_id AND t5.voided = 0
 AND t5.concept_name_type = 'FULLY_SPECIFIED'
-WHERE t5.name IN ('NBA-New Born Status')
+WHERE t5.name IN ('NBA-New born status')
 AND t1.voided = 0 AND
 (DATE(t1.obs_datetime) BETWEEN '#startDate#' AND '#endDate#')) AS InfantBirthStatus
 ON InfantBirthWeights.encounter_id = InfantBirthStatus.encounter_id) AS T1

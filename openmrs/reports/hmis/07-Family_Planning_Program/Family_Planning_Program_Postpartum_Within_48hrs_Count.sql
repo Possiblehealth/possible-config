@@ -23,7 +23,7 @@ SELECT
         AND answer_concept_short_name.voided
         IS FALSE
     WHERE
-        question_concept_name.name IN ('Discharge note-Contraceptive Chosen')
+        question_concept_name.name IN ('Discharge-Contraceptive chosen')
             AND cd.name = 'Coded' 
     ORDER BY answer_name DESC) first_answers
               

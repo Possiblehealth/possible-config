@@ -37,13 +37,13 @@ FROM
         AND person.voided = 0
         INNER JOIN
     concept_name deliveryMethodConcept ON deliveryMethodConcept.concept_id = obs.concept_id
-        AND deliveryMethodConcept.name = 'ANC-ANC Visit'
+        AND deliveryMethodConcept.name = 'ANC-ANC visit'
         AND deliveryMethodConcept.concept_name_type = 'FULLY_SPECIFIED'
         INNER JOIN
     concept_name cn2 ON obs.value_coded = cn2.concept_id
         AND cn2.concept_name_type = 'FULLY_SPECIFIED'
         AND cn2.voided = 0
-        AND cn2.name = 'ANC-1st (any time)'
+        AND cn2.name = 'ANC-1st any time'
 WHERE
     DATE(obs.obs_datetime)BETWEEN '#startDate#' AND '#endDate#' 
     )
@@ -59,20 +59,20 @@ FROM
         AND person.voided = 0
         INNER JOIN
     concept_name deliveryMethodConcept ON deliveryMethodConcept.concept_id = obs.concept_id
-        AND deliveryMethodConcept.name = 'ANC-ANC Visit'
+        AND deliveryMethodConcept.name = 'ANC-ANC visit'
         AND deliveryMethodConcept.concept_name_type = 'FULLY_SPECIFIED'
         INNER JOIN
     concept_name cn2 ON obs.value_coded = cn2.concept_id
         AND cn2.concept_name_type = 'FULLY_SPECIFIED'
         AND cn2.voided = 0
-        AND cn2.name = 'ANC-1st (per protocol)'
+        AND cn2.name = 'ANC-1st per protocol'
 WHERE
     DATE(obs.obs_datetime) BETWEEN '#startDate#' AND '#endDate#')) anc_table
 GROUP BY anc_table.concept_names
 -- ------------------------------------------------------------------------------------
-UNION ALL SELECT 'ANC-1st (per protocol)', 0, 0
-UNION ALL SELECT'ANC-1st (any time)',0,0
-UNION ALL SELECT 'Completed 4 ANC visits per protocol',0,0) final
+UNION ALL SELECT 'ANC-1st per protocol', 0, 0
+UNION ALL SELECT'ANC-1st any time',0,0
+UNION ALL SELECT 'ANC-Completed 4 ANC visits',0,0) final
 GROUP BY final.antenatalCheckup
 ORDER BY final.antenatalCheckup;
 
