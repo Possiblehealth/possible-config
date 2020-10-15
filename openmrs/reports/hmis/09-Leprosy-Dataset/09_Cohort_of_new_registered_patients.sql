@@ -18,8 +18,8 @@ FROM
     SUM(IF(person.gender = 'M', 1, 0)) AS total_male,
 	SUM(IF(person.gender = 'F' && leprosy_deduction_type.value_concept_full_name = 'Release from Treatment – RFT', 1, 0)) AS rft_female ,
     SUM(IF(person.gender = 'M' && leprosy_deduction_type.value_concept_full_name = 'Release from Treatment – RFT', 1, 0)) AS rft_male ,
-   	SUM(IF(person.gender = 'F' && leprosy_deduction_type.value_concept_full_name = 'Defaulter – DF', 1, 0)) AS defaulter_female ,
-    SUM(IF(person.gender = 'M' && leprosy_deduction_type.value_concept_full_name = 'Defaulter – DF', 1, 0)) AS defaulter_male ,
+   	SUM(IF(person.gender = 'F' && leprosy_deduction_type.value_concept_full_name = 'Defaulter–DF', 1, 0)) AS defaulter_female ,
+    SUM(IF(person.gender = 'M' && leprosy_deduction_type.value_concept_full_name = 'Defaulter–DF', 1, 0)) AS defaulter_male ,
    	SUM(IF(person.gender = 'F' && (leprosy_deduction_type.value_concept_full_name = 'Other Deduction-OD'||leprosy_deduction_type.value_concept_full_name = 'Transfer Out-TO'), 1, 0)) AS other_female ,
     SUM(IF(person.gender = 'M' && (leprosy_deduction_type.value_concept_full_name = 'Other Deduction-OD'||leprosy_deduction_type.value_concept_full_name = 'Transfer Out-TO'), 1, 0)) AS other_male 
 FROM visit
@@ -36,7 +36,7 @@ LEFT OUTER JOIN visit AS visit_final ON visit_final.patient_id = person.person_i
 INNER JOIN encounter AS encounter_final ON visit_final.visit_id = encounter_final.visit_id
 INNER JOIN coded_obs_view AS leprosy_deduction_type ON encounter_final.encounter_id = leprosy_deduction_type.encounter_id
 	AND leprosy_deduction_type.concept_full_name = 'Leprosy-Patient deduction type'
-	AND leprosy_deduction_type.value_concept_full_name IN ('Release from Treatment – RFT', 'Defaulter – DF', 'Other Deduction-OD', 'Transfer Out-TO') and leprosy_deduction_type.voided=0
+	AND leprosy_deduction_type.value_concept_full_name IN ('Release from Treatment – RFT', 'Defaulter–DF', 'Other Deduction-OD', 'Transfer Out-TO') and leprosy_deduction_type.voided=0
 ) AS table1
 -- MB, currently in treatment
 JOIN
@@ -103,7 +103,7 @@ LEFT OUTER JOIN visit AS visit_final ON visit_final.patient_id = person.person_i
 INNER JOIN encounter AS encounter_final ON visit_final.visit_id = encounter_final.visit_id
 INNER JOIN coded_obs_view AS leprosy_deduction_type ON encounter_final.encounter_id = leprosy_deduction_type.encounter_id
 	AND leprosy_deduction_type.concept_full_name = 'Leprosy-Patient deduction type'
-	AND leprosy_deduction_type.value_concept_full_name IN ('Release from Treatment – RFT', 'Defaulter – DF', 'Other Deduction-OD','Transfer Out-TO') and leprosy_deduction_type.voided=0
+	AND leprosy_deduction_type.value_concept_full_name IN ('Release from Treatment – RFT', 'Defaulter–DF', 'Other Deduction-OD','Transfer Out-TO') and leprosy_deduction_type.voided=0
 ) AS table1
 
 -- PB, currently in treatment
